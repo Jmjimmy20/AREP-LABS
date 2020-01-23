@@ -1,6 +1,7 @@
 package edu.escuelaing.arem.ASE.app;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.poi.ss.formula.functions.T;
@@ -35,8 +36,11 @@ public class LinkedListTest{
         int Vtest =10;
         LinkedList<Integer> l = new LinkedList<Integer>();
         l.add(10, Vtest);
-    }*/
+        assertFalse(l.wasCreated == false);
+    }
+    */
 
+    
     /**
      * Esta prueba verifica que despues de usar el metodo clear , el tamaño del LinkedLsit sea 0
      */
@@ -53,7 +57,10 @@ public class LinkedListTest{
         assertTrue(l.size ==0);
     }
 
-    
+
+    /**
+     * Esta prueba agrega un nodo en un LinkedList  por medio de index
+     */
     @Test
     public void AddIndexLinkedList(){
         int Vtest1 =10;

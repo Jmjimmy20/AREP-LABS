@@ -9,6 +9,7 @@ public class LinkedList<T> implements List<T>, Iterable<T> {
 
     Head<T> head;
     int size;
+    boolean wasCreated;
 
     LinkedList() {
         this.head = new Head<T>(null, null);
@@ -39,11 +40,14 @@ public class LinkedList<T> implements List<T>, Iterable<T> {
      **/
     public void add(int index,T data) { 
         try{
-            if (index >= size)throw new IndexOutOfBoundsException("El index ingresado es mayor al tamaño de la lista");
-            final Nodo<T> nodo = new Nodo<T>(data, null);
+            if (index >= size){
+                wasCreated = false;
+                throw new IndexOutOfBoundsException("El index ingresado es mayor al tamaño de la lista");
+            }final Nodo<T> nodo = new Nodo<T>(data, null);
             if(index == 0){
                 nodo.setNextNode(head.getFirst());
                 head.setFirst(nodo);
+                wasCreated = true;
                 size ++;
             }else{
                 int c =1;
@@ -57,6 +61,7 @@ public class LinkedList<T> implements List<T>, Iterable<T> {
                 lastNodo.setNextNode(nodo);
                 nodo.setNextNode(actNodo);
                 size ++;
+                wasCreated = true;
             }
     
 
