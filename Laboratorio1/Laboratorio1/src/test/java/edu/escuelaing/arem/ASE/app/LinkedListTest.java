@@ -8,12 +8,19 @@ import org.junit.Test;
 
 public class LinkedListTest{
 
+    /**
+     * Esta prueba se encarga de crear una nueva LinkedList y revisa si se crea de tamaño 0
+     */
     @Test
     public void CrearLinkedList(){
         LinkedList<T> l = new LinkedList<T>();
         assertTrue(l.size == 0);
     }
 
+
+    /**
+     * Esta prueba se encarga de Crear un nuevo nodo  y le envia el dato para su creación
+     */
     @Test
     public void CrearYargregarNodo(){
         int Vtest =10;
@@ -22,13 +29,17 @@ public class LinkedListTest{
         assertTrue(l.get(0) == Vtest);
     }
 
-    /*@Test
+    /*
+    @Test
     public void CrearYargregarNodoIndex(){ // no deberia pasar, si falla la prueba es correcta
         int Vtest =10;
         LinkedList<Integer> l = new LinkedList<Integer>();
         l.add(10, Vtest);
     }*/
 
+    /**
+     * Esta prueba verifica que despues de usar el metodo clear , el tamaño del LinkedLsit sea 0
+     */
     @Test
     public void clearLinkedList(){
         int Vtest1 =10;
@@ -43,7 +54,7 @@ public class LinkedListTest{
     }
 
     
-    /*@Test
+    @Test
     public void AddIndexLinkedList(){
         int Vtest1 =10;
         int Vtest2 =11;
@@ -54,8 +65,9 @@ public class LinkedListTest{
         l.add(Vtest2);
         l.add(Vtest3);
         l.add(2, Vtest4);
+        System.out.println(l.get(2));
         assertTrue(l.get(2) == Vtest4);
-    }*/
+    }
 
 
 
