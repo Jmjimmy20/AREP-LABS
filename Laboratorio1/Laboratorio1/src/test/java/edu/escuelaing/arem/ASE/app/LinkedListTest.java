@@ -42,7 +42,8 @@ public class LinkedListTest{
         assertTrue(l.size ==0);
     }
 
-    @Test
+    
+    /*@Test
     public void AddIndexLinkedList(){
         int Vtest1 =10;
         int Vtest2 =11;
@@ -54,6 +55,9 @@ public class LinkedListTest{
         l.add(Vtest3);
         l.add(2, Vtest4);
         assertTrue(l.get(2) == Vtest4);
-    }
+    }*/
+
+
+
 
 }

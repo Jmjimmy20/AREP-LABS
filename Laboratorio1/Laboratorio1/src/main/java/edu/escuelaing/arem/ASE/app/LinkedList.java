@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T> implements List<T>, Iterable<T> {
 
     Head<T> head;
     int size;
@@ -16,32 +16,28 @@ public class LinkedList<T> implements List<T> {
     }
 
     /***
-     * add new "data" to LinkedList
-     * 
-     * @param data node to add
-     * @return true if node was created
-     */
-    public boolean add(final T data) {
-        final Nodo<T> nodo = new Nodo<T>(data, null);
+     * Metodo encargado de agregar un nuevo nodo al LinkedList
+     * @param data Dato que almacena el nodo al ser creado
+     * @return Retorna true si fue posible agregar el nuevo nodo
+     **/
+    public boolean add(T data) {
+        Nodo<T> nodo = new Nodo<T>(data, null);
         if (size == 0) {
-            head.setFirst(nodo);
-            head.setLast(nodo);
-        } else if (size > 0) {
-            final Nodo<T> last = head.getLast();
-            last.setNextNode(nodo);
-            head.setLast(nodo);
+            this.head.setFirst(nodo);
+            this.head.setLast(nodo);
+        } else{
+            this.head.setLast(nodo);
         }
         size++;
         return true;
     }
 
     /***
-     * add new "data" to LinkedList using an index
-     * 
-     * @param index to know the position to add
-     * @param data node to add
-     */
-    public void add(final int index, final T data) { 
+     * Metodo encargado de agregar un nuevo nodo al LinkedList usando un index
+     * @param index Es el indice que indica en que lugar de la LinkedList se va a agregar el nodo
+     * @param data Dato que almacena el nodo al ser creado
+     **/
+    public void add(int index,T data) { 
         try{
             if (index >= size)throw new IndexOutOfBoundsException("El index ingresado es mayor al tamaño de la lista");
             final Nodo<T> nodo = new Nodo<T>(data, null);
@@ -70,8 +66,12 @@ public class LinkedList<T> implements List<T> {
         
     }
 
-    
-    public boolean addAll(final Collection<? extends T> c) {
+    /***
+     * Metodo encargado de agregar una coleccion de datos
+     * @param c Coleccion  a agregar
+     * @return  Retorna indicando la validez de la operacion
+     **/
+    public boolean addAll(Collection<? extends T> c) {
         for(T b:c){
             Nodo<T> agrega = new Nodo<T>(b, null);
             if(size == 0){
@@ -86,21 +86,27 @@ public class LinkedList<T> implements List<T> {
         return true;
     }
 
-    public boolean addAll(final int index, final Collection<? extends T> c) {
+
+    public boolean addAll(int index,  Collection<? extends T> c) {
         // TODO Auto-generated method stub
         return false;
     }
 
+
+    /***
+     * Metodo encargado de limpiar el LinkedList y eleminar las conexiones del head
+     * */
     public void clear() {
         head.ClearHead();
         size =0;
     }
 
     /**
-     * Get the data of node using an index
-     * @param index to get the node
+     * Metodo encargado de capturar el dato de un nodo a usando un index
+     * @param index indica la posicion del nodo a buscar
+     * @return Retorna el dato del nodo
      */
-    public T get(final int index) {
+    public T get(int index) {
         T dato = null;
         try{
             if(index>size) throw new IndexOutOfBoundsException("El index es mayor al tamaño de la estructura");
@@ -118,11 +124,15 @@ public class LinkedList<T> implements List<T> {
         return dato;
     }
 
-    public int indexOf(final Object o) {
+    public int indexOf(Object o) {
         // TODO Auto-generated method stub
         return 0;
     }
 
+    /***
+     * Metodo encargado de verificar si la LinkedList esta vacia
+     * @return Retorna si esta vacia o no
+     */
     public boolean isEmpty() {
         boolean isEmpty;
         if(size ==0) isEmpty =true;
@@ -130,12 +140,30 @@ public class LinkedList<T> implements List<T> {
         return isEmpty;
     }
 
+
+    /***
+     * Metodo encargado de usar un iterator que recorre la LinkedList de forma lineal
+     * @return Iterator 
+     */
     public Iterator<T> iterator() {
-        // TODO Auto-generated method stub
-        return null;
+        Iterator<T> res = new Iterator<T>() {
+            private Nodo<T> now = head.getFirst();
+            public boolean hasNext() {
+                if (now != null)
+                    return true;
+                return false;
+            }
+
+            public T next() {
+                T data = now.getData();
+                now = now.getNextNode();
+                return data;
+            }
+        };
+        return res;
     }
 
-    public int lastIndexOf(final Object o) {
+    public int lastIndexOf(Object o) {
         // TODO Auto-generated method stub
         return 0;
     }
@@ -145,41 +173,45 @@ public class LinkedList<T> implements List<T> {
         return null;
     }
 
-    public ListIterator<T> listIterator(final int index) {
+    public ListIterator<T> listIterator(int index) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    public boolean remove(final Object o) {
+    public boolean remove(Object o) {
         // TODO Auto-generated method stub
         return false;
     }
 
-    public T remove(final int index) {
+    public T remove(int index) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    public boolean removeAll(final Collection<?> c) {
+    public boolean removeAll(Collection<?> c) {
         // TODO Auto-generated method stub
         return false;
     }
 
-    public boolean retainAll(final Collection<?> c) {
+    public boolean retainAll(Collection<?> c) {
         // TODO Auto-generated method stub
         return false;
     }
 
-    public T set(final int index, final T element) {
+    public T set(int index, T element) {
         // TODO Auto-generated method stub
         return null;
     }
 
+    /**
+     * Metodo que indica el tamaño actual del LinkedList
+     * @return El numero que representa el tamaño
+     */
     public int size() {
         return size;
     }
 
-    public List<T> subList(final int fromIndex, final int toIndex) {
+    public List<T> subList(int fromIndex, int toIndex) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -189,7 +221,7 @@ public class LinkedList<T> implements List<T> {
         return null;
     }
 
-    public <T> T[] toArray(final T[] a) {
+    public <T> T[] toArray(T[] a) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -203,5 +235,6 @@ public class LinkedList<T> implements List<T> {
         // TODO Auto-generated method stub
         return false;
     }
+
 
 }
