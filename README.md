@@ -9,15 +9,15 @@ Laboratorio realizado para retomar conocimientos de materias previas como CDVS o
 # Inicio
   # - Requisitos
     Para poder realizar la implementación del ejercicio es necesario instalar:
-     * [maven]
+   * [maven]
 
-     * [java]
+   * [java]
     
   # - Pruebas
     Para la realizacion de las pruebas , se utulizo los datos entregados por el profesor
  
  # Latex
-    * [Latex]
+   * [Latex]
   
      
      
